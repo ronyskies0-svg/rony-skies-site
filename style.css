@@ -1,0 +1,139 @@
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   FUNDO ANIMADO
+========================= */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #ff416c, #ff4b2b);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  width: 180px;
+  height: 180px;
+  background: url('logo.png') no-repeat center/contain;
+  margin-bottom: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  animation: logoPulse 2s infinite alternate;
+}
+
+@keyframes logoPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* =========================
+   TÍTULO
+========================= */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-align: center;
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+  animation: titleFade 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleFade {
+  0% { opacity: 0.8; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   PARÁGRAFO
+========================= */
+p {
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 650px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   BOTÃO ESTILIZADO
+========================= */
+button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #ffd700;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+  width: 100%;
+  opacity: 0.7;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  p { font-size: 1rem; padding: 0 20px; }
+  .logo { width: 140px; height: 140px; }
+  button { padding: 10px 20px; font-size: 0.9rem; }
+}
