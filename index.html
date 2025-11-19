@@ -1,20 +1,138 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RONY SKIES</title>
-  <link rel="stylesheet" href="style.css">
+  <title>WASI TECH Pair Code</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #111;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      text-align: center;
+    }
+
+    h3 { color: #fff; margin-bottom: 10px; }
+    h6 { color: #ccc; margin: 3px 0; font-weight: normal; }
+
+    .input-container {
+      display: flex;
+      width: 100%;
+      margin-top: 15px;
+      gap: 5px;
+    }
+    .input-container button {
+      flex: 1;
+      border: none;
+      background: #5935ac;
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .input-container button:hover {
+      background: linear-gradient(135deg, #c01736 0%, #8b17b6 100%);
+    }
+
+    #pair {
+      margin-top: 20px;
+      word-break: break-all;
+      color: #fff;
+      font-weight: bold;
+    }
+    #copy {
+      cursor: pointer;
+      color: #ff4b4b;
+      font-size: 16px;
+    }
+
+    @media(max-width: 500px){
+      .input-container { flex-direction: column; }
+      .input-container input, .input-container button {
+        border-radius: 10px;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  
-  <div class="logo"></div>
-  <h1>RONY SKIES</h1>
-  <p>Bem-vindo ao universo de RONY SKIES, onde cada estrela brilha e cada cor se move com você. Explore, divirta-se e deixe sua imaginação voar pelo espaço!</p>
-  <button>Entrar no Universo</button>
+  <div class="container">
+    <h3>WASI TECH PAIRING CODE</h3>
+    <h6>Made By WASI TECH🔥</h6>
+    <h6>Enter Your Number with Country Code</h6>
+<div class="input-container">
+      <input type="number" id="number" placeholder="e.g. 2761XXXXXXX">
+      <button id="submit">Submit</button>
+    </div>
 
-  <footer>© 2025 RONY SKIES. Todos os direitos reservados.</footer>
+    <div id="waiting-message" style="color:#fff; margin-top:10px; display:none;">Please wait...</div>
+    <div id="pair"></div>
+  </div>
 
-  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    const pairContainer = document.getElementById("pair");
+    const submitBtn = document.getElementById("submit");
+    const numberInput = document.getElementById("number");
+    const waitingMessage = document.getElementById("waiting-message");
+async function copyText() {
+      const obj = document.getElementById("copy");
+      await navigator.clipboard.writeText(obj.innerText.replace(/(PAIR CODE|SESSION_ID): /, ''));
+      obj.innerText = "COPIED!";
+      obj.style.color = "lightblue";
+      setTimeout(() => { obj.style.color = "#ff4b4b"; obj.innerText = obj.innerText.includes("COPIED!") ? obj.innerText : obj.innerText; }, 1000);
+    }
+
+    submitBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const number = numberInput.value.replace(/[^0-9]/g, "");
+if (!number) {
+        pairContainer.innerHTML = '<span style="color:white">Enter your WhatsApp number with country code</span>';
+        return;
+      } else if (number.length < 11) {
+        pairContainer.innerHTML = '<span style="color:red">Invalid Number</span>';
+        return;
+      }
+
+      waitingMessage.style.display = "block";
+      pairContainer.innerHTML = "";
+
+      try {
+        // 🔥 Substitua pelo link do seu app Heroku
+        const HEROKU_URL = "https://SEU-APP-HEROKU.herokuapp.com";
+        const { data } = await axios(`${HEROKU_URL}/session?number=${number}`);
+
+        waitingMessage.style.display = "none";
+if (data.code) {
+          pairContainer.innerHTML = `<span id="copy" onclick="copyText()">PAIR CODE: ${data.code}</span>`;
+        } else if (data.session) {
+          pairContainer.innerHTML = `<span id="copy" onclick="copyText()">SESSION_ID: ${data.session}</span>`;
+        } else {
+          pairContainer.innerHTML = '<span style="color:red">Service Unavailable</span>';
+        }
+
+      } catch (err) {
+        waitingMessage.style.display = "none";
+        pairContainer.innerHTML = '<span style="color:red">Service Unavailable</span>';
+      }
+    });
+  </script>
 </body>
 </html>
