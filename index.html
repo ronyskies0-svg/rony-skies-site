@@ -1,138 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WASI TECH Pair Code</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 10px;
-    }
-    .container {
-      width: 100%;
-      max-width: 400px;
-      background: #111;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ronaldo Mazive - Pair Code</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    h3 { color: #fff; margin-bottom: 10px; }
-    h6 { color: #ccc; margin: 3px 0; font-weight: normal; }
+  body {
+    margin:0;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:10px;
+    background: linear-gradient(-45deg,#ff6ec4,#7873f5,#42e695,#ffcc70);
+    background-size:400% 400%;
+    animation: gradient 15s ease infinite;
+  }
 
-    .input-container {
-      display: flex;
-      width: 100%;
-      margin-top: 15px;
-      gap: 5px;
-    }
-    .input-container button {
-      flex: 1;
-      border: none;
-      background: #5935ac;
-      color: #fff;
-      font-weight: bold;
-      font-size: 14px;
-      border-radius: 0 10px 10px 0;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+  .container {
+    width:100%;
+    max-width:420px;
+    background: rgba(0,0,0,0.85);
+    border-radius:20px;
+    padding:25px 15px 15px 15px;
+    box-shadow:0 0 25px rgba(255,255,255,0.2);
+    text-align:center;
+    color:#fff;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
 
-    .input-container button:hover {
-      background: linear-gradient(135deg, #c01736 0%, #8b17b6 100%);
-    }
+  .groo-img {
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #ffdd59;
+    margin-top:-70px;
+    background:#000;
+    box-shadow:0 0 15px #fff;
+  }
 
-    #pair {
-      margin-top: 20px;
-      word-break: break-all;
-      color: #fff;
-      font-weight: bold;
-    }
-    #copy {
-      cursor: pointer;
-      color: #ff4b4b;
-      font-size: 16px;
-    }
+  h3 { margin:10px 0 5px 0; color:#ffdd59; text-shadow:0 0 10px #fff; }
+  h6 { margin:3px 0; font-weight:normal; color:#ccc; }
+  .input-container {
+    display:flex;
+    width:100%;
+    margin-top:15px;
+    gap:5px;
+    transition: all 0.3s;
+  }
 
-    @media(max-width: 500px){
-      .input-container { flex-direction: column; }
-      .input-container input, .input-container button {
-        border-radius: 10px;
-        width: 100%;
-      }
-    }
-  </style>
+  .input-container input {
+    flex:3;
+    padding:14px;
+    border-radius:12px 0 0 12px;
+    border:none;
+    font-size:16px;
+    background: rgba(255,255,255,0.1);
+    color:#fff;
+    transition: all 0.3s;
+  }
+.input-container input:focus {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.02);
+  }
+
+  .input-container button {
+    flex:1;
+    border:none;
+    background: linear-gradient(45deg,#ff6ec4,#7873f5);
+    color:#fff;
+    font-weight:bold;
+    font-size:14px;
+    border-radius:0 12px 12px 0;
+    cursor:pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px #fff;
+  }
+
+  .input-container button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg,#42e695,#ffcc70);
+    box-shadow:0 0 20px #fff;
+  }
+#pair {
+    margin-top:20px;
+    word-break:break-all;
+    color:#ffdd59;
+    font-weight:bold;
+    text-shadow:0 0 5px #fff;
+    cursor:pointer;
+  }
+
+  #copy:hover {
+    color:#42e695;
+    text-shadow:0 0 15px #42e695;
+  }
+
+  #waiting-message {
+    color:#fff;
+    margin-top:10px;
+    font-style: italic;
+    display:none;
+  }
+
+  @media(max-width:500px){
+    .input-container{flex-direction:column;}
+    .input-container input,.input-container button{border-radius:12px;width:100%;}
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h3>WASI TECH PAIRING CODE</h3>
-    <h6>Made By WASI TECH🔥</h6>
-    <h6>Enter Your Number with Country Code</h6>
-<div class="input-container">
-      <input type="number" id="number" placeholder="e.g. 2761XXXXXXX">
-      <button id="submit">Submit</button>
-    </div>
+<div class="container">
+  <!-- Foto de Groo -->
+  <img src="https://i.imgur.com/5bGv9cG.png" alt="Groo" class="groo-img">
 
-    <div id="waiting-message" style="color:#fff; margin-top:10px; display:none;">Please wait...</div>
-    <div id="pair"></div>
+  <h3>Ronaldo Mazive PAIRING CODE</h3>
+  <h6>Made by Ronaldo Mazive 🔥</h6>
+  <h6>Enter Your WhatsApp Number with Country Code</h6>
+<div class="input-container">
+    <input type="number" id="number" placeholder="e.g. 2761XXXXXXX">
+    <button id="submit">Submit</button>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
-  <script>
-    const pairContainer = document.getElementById("pair");
-    const submitBtn = document.getElementById("submit");
-    const numberInput = document.getElementById("number");
-    const waitingMessage = document.getElementById("waiting-message");
-async function copyText() {
-      const obj = document.getElementById("copy");
-      await navigator.clipboard.writeText(obj.innerText.replace(/(PAIR CODE|SESSION_ID): /, ''));
-      obj.innerText = "COPIED!";
-      obj.style.color = "lightblue";
-      setTimeout(() => { obj.style.color = "#ff4b4b"; obj.innerText = obj.innerText.includes("COPIED!") ? obj.innerText : obj.innerText; }, 1000);
-    }
+  <div id="waiting-message">Please wait...</div>
+  <div id="pair"></div>
+</div>
 
-    submitBtn.addEventListener("click", async (e) => {
-      e.preventDefault();
-      const number = numberInput.value.replace(/[^0-9]/g, "");
-if (!number) {
-        pairContainer.innerHTML = '<span style="color:white">Enter your WhatsApp number with country code</span>';
-        return;
-      } else if (number.length < 11) {
-        pairContainer.innerHTML = '<span style="color:red">Invalid Number</span>';
-        return;
-      }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+<script>
+const pairContainer=document.getElementById("pair");
+const submitBtn=document.getElementById("submit");
+const numberInput=document.getElementById("number");
+const waitingMessage=document.getElementById("waiting-message");
+async function copyText(){
+  const obj=document.getElementById("copy");
+  if(!obj) return;
+  await navigator.clipboard.writeText(obj.innerText.replace(/(PAIR CODE|SESSION_ID): /,''));
+  obj.innerText="COPIED!";
+  obj.style.color="#42e695";
+  setTimeout(()=>{obj.style.color="#ffdd59"; obj.innerText=obj.innerText.includes("COPIED!")?obj.innerText:obj.innerText;},1200);
+}
 
-      waitingMessage.style.display = "block";
-      pairContainer.innerHTML = "";
+submitBtn.addEventListener("click", async (e)=>{
+  e.preventDefault();
+  const number=numberInput.value.replace(/[^0-9]/g,'');
 
-      try {
-        // 🔥 Substitua pelo link do seu app Heroku
-        const HEROKU_URL = "https://SEU-APP-HEROKU.herokuapp.com";
-        const { data } = await axios(`${HEROKU_URL}/session?number=${number}`);
+  if(!number){ pairContainer.innerHTML='<span style="color:white">Enter your WhatsApp number with country code</span>'; return;}
+  if(number.length<11){ pairContainer.innerHTML='<span style="color:red">Invalid Number</span>'; return;}
 
-        waitingMessage.style.display = "none";
-if (data.code) {
-          pairContainer.innerHTML = `<span id="copy" onclick="copyText()">PAIR CODE: ${data.code}</span>`;
-        } else if (data.session) {
-          pairContainer.innerHTML = `<span id="copy" onclick="copyText()">SESSION_ID: ${data.session}</span>`;
-        } else {
-          pairContainer.innerHTML = '<span style="color:red">Service Unavailable</span>';
-        }
+  waitingMessage.style.display="block";
+  pairContainer.innerHTML="";
+  try{
+    const HEROKU_URL="https://SEU-APP-HEROKU.herokuapp.com"; // <--- coloque seu Heroku aqui
+    const {data}=await axios(`${HEROKU_URL}/session?number=${number}`);
 
-      } catch (err) {
-        waitingMessage.style.display = "none";
-        pairContainer.innerHTML = '<span style="color:red">Service Unavailable</span>';
-      }
-    });
-  </script>
+    waitingMessage.style.display="none";
+
+    if(data.code){ pairContainer.innerHTML=`<span id="copy" onclick="copyText()">PAIR CODE: ${data.code}</span>`;}
+    else if(data.session){ pairContainer.innerHTML=`<span id="copy" onclick="copyText()">SESSION_ID: ${data.session}</span>`;}
+    else{ pairContainer.innerHTML='<span style="color:red">Service Unavailable</span>';}
+  }catch(err){
+    waitingMessage.style.display="none";
+    pairContainer.innerHTML='<span style="color:red">Service Unavailable</span>';
+  }
+});
+</script>
 </body>
 </html>
